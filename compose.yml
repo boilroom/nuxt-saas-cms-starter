@@ -1,0 +1,15 @@
+name: nuxt-saas-cms-starter
+services:
+
+  db:
+    image: mariadb:latest
+    restart: unless-stopped
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./_docker_data/db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=f!fI4@dkowEj4
+      - MYSQL_USER=app
+      - MYSQL_PASSWORD=hH34k@oOe!9p1
+      - MYSQL_DATABASE=nsc_starter
