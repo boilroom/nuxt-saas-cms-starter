@@ -21,6 +21,14 @@ export default function (type: string, value: VariousData, options?: { [key: str
         };
       }
       break;
+    case 'digits':
+      if (!/^\d+$/.test(value as string)) {
+        return {
+          error: true,
+          message: 'This field must contain only digits'
+        };
+      }
+      break;
     case 'code':
       if (typeof value !== 'string' || value.length !== 64) {
         return {

@@ -7,6 +7,8 @@ datasource db {
   url                       = env("DATABASE_URL")
 }
 
+// === User ====
+
 model User {
   id                        Int             @id @default(autoincrement())
   email                     String          @unique
@@ -25,4 +27,26 @@ model Session {
   expiresAt                 DateTime        @map("expires_at")
   user                      User            @relation(references: [id], fields: [userId], onDelete: Cascade)
   @@map("user_sessions")
+}
+
+// === Content ====
+
+model Post {
+  id                        Int             @id @default(autoincrement())
+  titleEn                   String          @map("title_en")
+  contentEn                 String          @map("content_en")
+  titleEs                   String          @map("title_es")
+  contentEs                 String          @map("content_es")
+  titleFr                   String          @map("title_fr")
+  contentFr                 String          @map("content_fr")
+  titleDe                   String          @map("title_de")
+  contentDe                 String          @map("content_de")
+  createdAt                 DateTime        @default(now()) @map("created_at")
+  updatedAt                 DateTime?       @default(now()) @map("updated_at")
+  img                       String?
+  slug                      String          @unique
+  sourceName                String?         @map("source_name")
+  sourceUrl                 String?         @map("source_url")
+  status                    Int             @default(0)
+  @@map("posts")
 }
